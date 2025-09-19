@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>514 AMW/FM Deployment Finance Quick Reference Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            margin-bottom: 10px;
+        }
+
+        .header .unit {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .section {
+            background: white;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .section-header {
+            padding: 15px 20px;
+            font-weight: bold;
+            color: white;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-header.checklist {
+            background: #dc2626;
+        }
+
+        .section-header.entitlements {
+            background: #f59e0b;
+        }
+
+        .section-header.issues {
+            background: #dc2626;
+        }
+
+        .section-header.gtc {
+            background: #059669;
+        }
+
+        .section-header.fsa {
+            background: #7c3aed;
+        }
+
+        .section-header.perdiem {
+            background: #8b5cf6;
+        }
+
+        .section-header.voucher {
+            background: #6b7280;
+        }
+
+        .section-header.weekly {
+            background: #059669;
+        }
+
+        .section-header.regulations {
+            background: #6b7280;
+        }
+
+        .section-content {
+            padding: 20px;
+        }
+
+        .checklist {
+            list-style: none;
+        }
+
+        .checklist li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .checklist li:before {
+            content: "☐";
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+            color: #059669;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        th {
+            background: #f3f4f6;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .contact-grid {
+            display: grid;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .contact-item {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .contact-item h4 {
+            color: #1e40af;
+            margin-bottom: 5px;
+        }
+
+        .contact-item .phone {
+            font-weight: bold;
+            color: #059669;
+        }
+
+        .warning {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #991b1b;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .warning strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .gtc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 15px 0;
+        }
+
+        .gtc-column {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .gtc-column h4 {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid;
+        }
+
+        .gtc-column.must-use h4 {
+            color: #059669;
+            border-color: #059669;
+        }
+
+        .gtc-column.never-use h4 {
+            color: #dc2626;
+            border-color: #dc2626;
+        }
+
+        .gtc-column.payment h4 {
+            color: #f59e0b;
+            border-color: #f59e0b;
+        }
+
+        .gtc-column ul {
+            list-style: none;
+        }
+
+        .gtc-column.must-use li:before {
+            content: "✓ ";
+            color: #059669;
+            font-weight: bold;
+        }
+
+        .gtc-column.never-use li:before {
+            content: "✗ ";
+            color: #dc2626;
+            font-weight: bold;
+        }
+
+        .timeline {
+            background: #f0f9ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .timeline-item {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e0e7ff;
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .timeline-item strong {
+            color: #1e40af;
+        }
+
+        .pro-tip {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .emergency-contact {
+            background: #dc2626;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .regulations-list {
+            list-style: none;
+        }
+
+        .regulations-list li {
+            padding: 10px;
+            margin-bottom: 8px;
+            background: #f8fafc;
+            border-radius: 6px;
+            border-left: 4px solid #6b7280;
+        }
+
+        .regulations-list a {
+            color: #1e40af;
+            text-decoration: none;
+        }
+
+        .regulations-list a:hover {
+            text-decoration: underline;
+        }
+
+        .weekly-grid {
+            display: grid;
+            gap: 20px;
+            margin: 15px 0;
+        }
+
+        .weekly-section {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid;
+        }
+
+        .weekly-section.money-in {
+            border-color: #059669;
+        }
+
+        .weekly-section.money-out {
+            border-color: #3b82f6;
+        }
+
+        .weekly-section.paperwork {
+            border-color: #8b5cf6;
+        }
+
+        .weekly-section h4 {
+            margin-bottom: 10px;
+            color: #374151;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .gtc-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            table {
+                font-size: 0.9rem;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-content {
+                padding: 15px;
+            }
+            
+            table {
+                font-size: 0.8rem;
+            }
+            
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="unit">514 AMW/FM</div>
+            <h1>DEPLOYMENT FINANCE QUICK REFERENCE GUIDE</h1>
+        </header>
+
+        <!-- Before You Deploy Checklist -->
+        <section class="section">
+            <div class="section-header checklist">
+                <span>🚨</span>
+                <span>BEFORE YOU DEPLOY - CHECKLIST</span>
+            </div>
+            <div class="section-content">
+                <ul class="checklist">
+                    <li><strong>Update DEERS</strong> - Ensure dependents are current</li>
+                    <li><strong>Activate GTC</strong> - Must be current and functional</li>
+                    <li><strong>Set up online access</strong> - myPay & CitiManager accounts</li>
+                    <li><strong>Notify family</strong> - Provide emergency finance contacts</li>
+                    <li><strong>File accrual voucher</strong> - If TDY > 45 days (30 days prior)</li>
+                    <li><strong>Review LES</strong> - Ensure current pay is correct</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- What You'll Receive -->
+        <section class="section">
+            <div class="section-header entitlements">
+                <span>💰</span>
+                <span>WHAT YOU'LL RECEIVE</span>
+            </div>
+            <div class="section-content">
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ENTITLEMENT</th>
+                                <th>WHEN</th>
+                                <th>AMOUNT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Base Pay</td>
+                                <td>Continues normally</td>
+                                <td>Regular monthly amount</td>
+                            </tr>
+                            <tr>
+                                <td>Family Separation Allowance (FSA)</td>
+                                <td>After 31+ consecutive days</td>
+                                <td>$250/month (prorated daily)</td>
+                            </tr>
+                            <tr>
+                                <td>Per Diem</td>
+                                <td>Daily during TDY</td>
+                                <td>Check <a href="https://www.travel.dod.mil/" target="_blank">DTMO</a> as it varies with location</td>
+                            </tr>
+                            <tr>
+                                <td>Special and Incentive Pay (S&I P)</td>
+                                <td>Only available for specific locations</td>
+                                <td>Refer to <a href="https://www.dfas.mil/MilitaryMembers/payentitlements/specialpay/" target="_blank">DFAS – Special Pay</a></td>
+                            </tr>
+                            <tr>
+                                <td>Combat Zone Tax Exclusion (CZTE)</td>
+                                <td>Only available for specific locations</td>
+                                <td>Refer to <a href="https://militarypay.defense.gov/Pay/Tax-Information/CZTE/" target="_blank">DFAS – CZTE Table</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Common Issues & Solutions -->
+        <section class="section">
+            <div class="section-header issues">
+                <span>🚨</span>
+                <span>COMMON ISSUES & SOLUTIONS</span>
+            </div>
+            <div class="section-content">
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <h4>Pay Related Issues</h4>
+                        <p>Check <a href="https://mypay.dfas.mil/" target="_blank">myPay</a> first, then contact Deployed Finance Office</p>
+                        <div class="phone">myPay: 1-888-332-7411</div>
+                        <div class="phone"><a href="https://www.dfas.mil/" target="_blank">DFAS</a></div>
+                    </div>
+                    <div class="contact-item">
+                        <h4>GTC Related Issues</h4>
+                        <p>Contact Unit GTC Manager first, then <a href="https://www.citimanager.com/" target="_blank">Citibank</a> if needed</p>
+                        <div class="phone">Citibank: 1-800-790-7206</div>
+                    </div>
+                    <div class="contact-item">
+                        <h4>Family Emergency Money</h4>
+                        <p>Apply Online First</p>
+                        <div class="phone"><a href="https://afas.org/" target="_blank">Air Force Aid Society</a>: 1-800-769-8951</div>
+                    </div>
+                    <div class="contact-item">
+                        <h4>DTS Related Issues</h4>
+                        <p>Contact Unit (ODTA) Organization Defense Travel Administrator</p>
+                        <div class="phone"><a href="https://dtsproweb.defensetravel.osd.mil/dts-app/pubsite/all/first" target="_blank">Defense Travel System</a></div>
+                    </div>
+                    <div class="contact-item">
+                        <h4>General Finance Questions</h4>
+                        <p>Check the welcome packet, then contact local finance</p>
+                        <div class="phone">Deployed Location Finance</div>
+                    </div>
+                    <div class="contact-item">
+                        <h4>Military Family Life</h4>
+                        <p>24/7 support available</p>
+                        <div class="phone"><a href="https://www.militaryonesource.mil/" target="_blank">Military OneSource</a>: 1-800-342-9647</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Government Travel Card -->
+        <section class="section">
+            <div class="section-header gtc">
+                <span>💳</span>
+                <span>GOVERNMENT TRAVEL CARD (GTC)</span>
+            </div>
+            <div class="section-content">
+                <div class="gtc-grid">
+                    <div class="gtc-column must-use">
+                        <h4>✓ MUST USE:</h4>
+                        <ul>
+                            <li>Lodging</li>
+                            <li>Official meals</li>
+                            <li>Transportation</li>
+                            <li>Communication costs</li>
+                        </ul>
+                    </div>
+                    <div class="gtc-column never-use">
+                        <h4>✗ NEVER USE:</h4>
+                        <ul>
+                            <li>Personal items</li>
+                            <li>Entertainment</li>
+                            <li>Family expenses</li>
+                            <li>Personal cash</li>
+                        </ul>
+                    </div>
+                    <div class="gtc-column payment">
+                        <h4>💳 PAYMENT INFORMATION</h4>
+                        <p>Due 25-30 days after statement closing date (exact date printed on statement) and can be made online at <a href="https://www.citimanager.com/" target="_blank">CitiManager</a></p>
+                        <p><strong>Setup autopay BEFORE deployment</strong></p>
+                    </div>
+                </div>
+                <div class="warning">
+                    <strong>⚠️ WARNING:</strong>
+                    Routine delinquency on payments may result in account suspension and salary offset. Misuse may trigger security clearance review and disciplinary action. DTMO GTC Regulations §§ 040103.B, 041005, 041202.A, 0413 (2025)
+                </div>
+            </div>
+        </section>
+
+        <!-- Family Separation Allowance -->
+        <section class="section">
+            <div class="section-header fsa">
+                <span>🏠</span>
+                <span>FAMILY SEPARATION ALLOWANCE (FSA)</span>
+            </div>
+            <div class="section-content">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <strong>Day 1:</strong> Depart home station (clock starts)<br>
+                        <strong>Calculation:</strong> $250/month ÷ 30 days = $8.33/day<br>
+                        <strong>Action:</strong> Automatically processed by Finance
+                    </div>
+                    <div class="timeline-item">
+                        <strong>Day 31:</strong> Eligible for FSA<br>
+                        <strong>Payment:</strong> Paid retroactive to day 1<br>
+                        <strong>Requirement:</strong> Must have dependents in DEERS
+                    </div>
+                    <div class="timeline-item">
+                        <strong>Day 46:</strong> First FSA payment appears on LES<br>
+                        <strong>Note:</strong> Leave during deployment does NOT reset clock<br>
+                        <strong>Action:</strong> Contact Finance if not showing after expected timeframe
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Per Diem Breakdown -->
+        <section class="section">
+            <div class="section-header perdiem">
+                <span>🍽️</span>
+                <span>PER DIEM BREAKDOWN</span>
+            </div>
+            <div class="section-content">
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>DEPLOYMENT SCENARIO</th>
+                                <th>MEAL PORTION</th>
+                                <th>INCIDENTALS</th>
+                                <th>WHAT TO EXPECT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Government Dining Available</td>
+                                <td>Reduced rate (PMR)</td>
+                                <td>$3.50/day OCONUS* $5/day CONUS</td>
+                                <td>DTS calculates reduced meal rates</td>
+                            </tr>
+                            <tr>
+                                <td>No Government Dining</td>
+                                <td>Full meal rate varies by location</td>
+                                <td>$5/day CONUS, Varies OCONUS</td>
+                                <td>DTS applies standard rates</td>
+                            </tr>
+                            <tr>
+                                <td>Government Quarters</td>
+                                <td>Full meal rate varies by location</td>
+                                <td>$3.50/day OCONUS*</td>
+                                <td>DTS applies reduced incidentals rates</td>
+                            </tr>
+                            <tr>
+                                <td>Travel Days</td>
+                                <td>Full rates apply</td>
+                                <td>Full incidental rates apply</td>
+                                <td>DTS applies full per diem rates</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p><em>*Per JTR 020304-F: OCONUS installations may authorize higher rates if $3.50 is inadequate.</em></p>
+            </div>
+        </section>
+
+        <!-- Voucher Requirements -->
+        <section class="section">
+            <div class="section-header voucher">
+                <span>📄</span>
+                <span>VOUCHER REQUIREMENTS</span>
+            </div>
+            <div class="section-content">
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>DEPLOYED SCENARIO</th>
+                                <th>RECEIPT REQUIREMENTS</th>
+                                <th>NOTES FROM DTS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>All Lodging and Transportation</td>
+                                <td>Only valid receipts which show establishments' name, member's name, dates of service, total cost with itemized taxes/fees, payment methods, zero balance</td>
+                                <td>Reservations are not a valid receipt. If unable to provide, member must contact lodging or submit a lost receipt form.</td>
+                            </tr>
+                            <tr>
+                                <td>Other expenses</td>
+                                <td>Receipts for claims that exceed $75 threshold and/or claiming multiple small purchases into a single expense (e.g. car rental fuel, $30 + $30 +$30 = $90)</td>
+                                <td>DTMO defines Valid Receipt</td>
+                            </tr>
+                            <tr>
+                                <td>Lost receipts</td>
+                                <td>Statement in Lieu of Actual Receipts form must be completed</td>
+                                <td>Completed and to be included: DD Form 1351-2, travel orders, with "Statement in Lieu of Actual Receipts"</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Save to Phone - Check Weekly -->
+        <section class="section">
+            <div class="section-header weekly">
+                <span>📱</span>
+                <span>SAVE TO PHONE - CHECK WEEKLY</span>
+            </div>
+            <div class="section-content">
+                <div class="weekly-grid">
+                    <div class="weekly-section money-in">
+                        <h4>✅ MONEY IN (Getting Paid)</h4>
+                        <ul class="checklist">
+                            <li>LES shows correct pay</li>
+                            <li>FSA appearing (after day 31)</li>
+                            <li>All Allowances present</li>
+                        </ul>
+                    </div>
+                    <div class="weekly-section money-out">
+                        <h4>💳 MONEY OUT (Spending)</h4>
+                        <ul class="checklist">
+                            <li>GTC used only for official</li>
+                            <li>GTC bill paid on time</li>
+                            <li>Receipts saved for everything</li>
+                        </ul>
+                    </div>
+                    <div class="weekly-section paperwork">
+                        <h4>📄 PAPERWORK (Staying Current)</h4>
+                        <ul class="checklist">
+                            <li>Vouchers submitted promptly</li>
+                            <li>Family status updated</li>
+                            <li>Problems reported immediately</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="emergency-contact">
+                    <strong>🚨 EMERGENCY CONTACT: Unit Finance Office</strong>
+                </div>
+            </div>
+        </section>
+
+        <!-- Regulations Reference -->
+        <section class="section">
+            <div class="section-header regulations">
+                <span>📚</span>
+                <span>REGULATIONS REFERENCE</span>
+            </div>
+            <div class="section-content">
+                <ul class="regulations-list">
+                    <li><a href="https://www.travel.dod.mil/Policy-Regulations/Joint-Travel-Regulations/" target="_blank">JTR - Joint Travel Regulations</a></li>
+                    <li><a href="https://static.e-publishing.af.mil/production/1/saf_fm/publication/afi65-103/afi65-103.pdf" target="_blank">AFI 65-103 - Temporary Duty Travel</a></li>
+                    <li><a href="https://comptroller.defense.gov/fmr/fmrvolumes.aspx" target="_blank">DoD FMR V.9 – Travel Policy</a></li>
+                    <li><a href="https://militarypay.defense.gov/pay/ALLOWANCES/fsa.aspx" target="_blank">DD 1561 - Family Separation Allowance</a></li>
+                    <li><a href="https://comptroller.defense.gov/fmr/fmrvolumes.aspx" target="_blank">DoD FMR Vol.7A, Chapter 24</a></li>
+                    <li><a href="https://comptroller.defense.gov/fmr/fmrvolumes.aspx" target="_blank">DoD FMR Vol.7A, Chapter 10</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="pro-tip">
+            <strong>💡 PRO TIP:</strong> Save this reference guide to your phone for easy access while deployed!<br><br>
+            <strong>Questions?</strong> Contact your deployed Finance Office first - they're your primary resource for deployment-specific issues.
+        </div>
+    </div>
+</body>
+</html>
